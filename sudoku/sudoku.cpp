@@ -125,7 +125,7 @@ sudoku parse_sudoku(std::string s) {
 	return sud;
 }
 
-#include <iostream>
+
 #include <cassert>
 
 void test_solver() {
@@ -144,23 +144,23 @@ void test_solver() {
 	};
 
 	for (int i = 0; i < 10; i++) {
-		std::cout << i << std::endl;
 		auto t = tts[i];
 		auto s = parse_sudoku(t.quizzle);
 		int b = 0;
 		assert(solve(s, b));
 		assert(s.str() == t.solution);
-		std::cout << s.repr();
 	}
 }
 
+#include <iostream>
 
 int main() {
+	test_solver();
 	sudoku s = parse_sudoku("004300209005009001070060043006002087190007400050083000600000105003508690042910300");
-	std::cout << s.str() << std::endl;
+	std::cout << s.repr() << std::endl;
 	int b = 0;
 	solve(s,b);
-	std::cout << s.str() << std::endl;
-	test_solver();
+	std::cout << "backtracks: " << b << std::endl;
+	std::cout << s.repr() << std::endl;
 	return 0;
 }
